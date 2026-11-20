@@ -1,4 +1,4 @@
-// 1. Light / Dark Appearance Toggle (macOS style)
+// 1. Light (Default) / Dark Appearance Toggle (macOS style)
 const rootEl = document.documentElement;
 const themeBtn = document.getElementById('themeToggleBtn');
 const themeIcon = document.getElementById('themeIcon');
@@ -6,16 +6,20 @@ const themeIcon = document.getElementById('themeIcon');
 function setTheme(mode) {
   rootEl.setAttribute('data-theme', mode);
   if (themeIcon) themeIcon.textContent = mode === 'dark' ? '☀' : '☾';
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if (metaTheme) metaTheme.setAttribute('content', mode === 'dark' ? '#07090e' : '#f5f5f7');
   try { localStorage.setItem('mactimize-theme', mode); } catch {}
 }
 
 try {
   const saved = localStorage.getItem('mactimize-theme');
-  if (saved === 'light' || saved === 'dark') setTheme(saved);
-} catch {}
+  setTheme(saved === 'dark' ? 'dark' : 'light');
+} catch {
+  setTheme('light');
+}
 
 themeBtn?.addEventListener('click', () => {
-  const current = rootEl.getAttribute('data-theme') || 'dark';
+  const current = rootEl.getAttribute('data-theme') || 'light';
   setTheme(current === 'dark' ? 'light' : 'dark');
 });
 
