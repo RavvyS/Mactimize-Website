@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="meter" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0%" stop-color="#0a84ff"/>
+      <stop offset="50%" stop-color="#32d7ff"/>
+      <stop offset="100%" stop-color="#30d158"/>
+    </linearGradient>
+    <linearGradient id="metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f2f6ff"/>
+      <stop offset="100%" stop-color="#9aa8c4"/>
+    </linearGradient>
+  </defs>
+  <!-- MacBook Display Bezel (floating, no outer box) -->
+  <rect x="8" y="10" width="48" height="33" rx="5" fill="#0d1220" stroke="url(#metal)" stroke-width="2.6"/>
+  <!-- MacBook Base Lip -->
+  <rect x="3" y="46" width="58" height="4.5" rx="2.25" fill="url(#metal)"/>
+  <!-- Optimize Meter Background Arc -->
+  <path d="M 18 33 A 14 14 0 0 1 46 33" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="4" stroke-linecap="round"/>
+  <!-- Optimize Meter Active Glowing Arc -->
+  <path d="M 18 33 A 14 14 0 0 1 44 25.8" fill="none" stroke="url(#meter)" stroke-width="4" stroke-linecap="round"/>
+  <!-- Meter Needle -->
+  <line x1="32" y1="33" x2="42.2" y2="25.8" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round"/>
+  <circle cx="32" cy="33" r="3.2" fill="#ffffff"/>
+  <circle cx="32" cy="33" r="1.5" fill="#30d158"/>
+</svg>

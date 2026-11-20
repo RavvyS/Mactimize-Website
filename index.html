@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark light" />
+  <title>Mactimize — Native macOS Storage, Dev Bloat &amp; SMC Fan Suite</title>
+  <meta name="description" content="Zero-bloat native SwiftUI utility for macOS. Clean caches, stale node_modules &amp; Rust target/ builds, SHA-256 verified duplicates, login items, live RAM hogs, and Apple Silicon SMC fans." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- Ambient Liquid Mesh Background -->
+  <div class="ambient-bg" aria-hidden="true">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+  </div>
+
+  <!-- Floating Apple Liquid Glass Navigation Pill -->
+  <header class="glass-nav-wrap">
+    <div class="glass-nav">
+      <a class="brand" href="#top" aria-label="Mactimize Home">
+        <img src="favicon.svg" alt="" width="30" height="30" style="border-radius:7px;display:block;" />
+        <span class="brand-name">Mactimize</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#bento">Highlights</a>
+        <a href="#cooling">Fans &amp; SMC</a>
+        <a href="#safety">Safety</a>
+        <a href="#compare">Compare</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button type="button" class="glass-icon-btn" id="themeToggleBtn" aria-label="Toggle Light and Dark appearance" title="Switch Light / Dark mode">
+          <span id="themeIcon" aria-hidden="true">☀</span>
+        </button>
+        <a class="btn-glass-primary" href="#download">Get Mactimize</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- Keynote Hero Section -->
+    <section id="top" class="hero">
+      <div class="container hero-center">
+        <div class="liquid-pill reveal">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          Introducing Mactimize · Native SwiftUI · Under 500 KB
+        </div>
+
+        <h1 class="hero-title reveal">
+          Lean. Mean.<br /><span class="apple-gradient">Impossibly clean.</span>
+        </h1>
+
+        <p class="hero-desc reveal">
+          Engineered from the ground up for Apple Silicon. Mactimize sweeps away gigabytes of hidden caches, stale developer builds, and exact duplicate files — while putting your Mac’s cooling fans and memory right at your fingertips. All in an app smaller than a single photo.
+        </p>
+
+        <div class="hero-actions reveal">
+          <a class="btn-apple-blue" href="https://github.com/RavvyS/Mactimize/releases/latest/download/Mactimize.dmg">
+            Download Mactimize.dmg
+            <span aria-hidden="true">↓</span>
+          </a>
+          <button type="button" class="btn-apple-glass" id="openSafetyDialogBtn">
+            See how it protects you
+          </button>
+        </div>
+      </div>
+
+      <!-- Interactive macOS Desktop + Liquid Glass Window Stage -->
+      <div class="container stage-wrap reveal">
+        <div class="macos-desktop-frame">
+          <!-- Simulated macOS Menu Bar -->
+          <div class="macos-menubar">
+            <div class="menubar-left">
+              <span class="apple-mark" aria-hidden="true"></span>
+              <strong>Mactimize</strong>
+              <span>File</span>
+              <span>View</span>
+              <span>Window</span>
+            </div>
+            <div class="menubar-right">
+              <button type="button" class="menubar-widget-btn" id="menuBarToggleBtn" aria-expanded="false" aria-controls="menuBarPopover">
+                <span class="mb-sparkle" aria-hidden="true">◉</span>
+                <span id="mbLiveStats">51°C · 69 GB Free</span>
+              </button>
+              <span class="menubar-time">Fri 21:45</span>
+            </div>
+
+            <!-- Clickable Liquid Glass Menu Bar Popover -->
+            <div class="menubar-popover" id="menuBarPopover" hidden>
+              <div class="mb-pop-head">
+                <div class="mb-ring" aria-hidden="true"><span>79%</span></div>
+                <div>
+                  <strong>Macintosh HD</strong>
+                  <small>69.4 GB free of 460 GB</small>
+                </div>
+              </div>
+              <div class="mb-pop-rows">
+                <div><span>Safe to clean</span><strong class="txt-green">28.9 GB</strong></div>
+                <div><span>Heavy apps RAM</span><strong class="txt-purple">2.4 GB</strong></div>
+                <div><span>CPU &amp; Fans</span><strong class="txt-cyan">51°C · 3420 RPM</strong></div>
+              </div>
+              <div class="mb-pop-actions">
+                <button type="button" class="mb-btn primary" id="mbQuickRamBtn">Free Idle RAM</button>
+                <button type="button" class="mb-btn" id="mbPauseFanBtn">Stop Fan Tracking</button>
+              </div>
+              <div class="mb-pop-toast" id="mbToast" hidden></div>
+            </div>
+          </div>
+
+          <!-- macOS App Window -->
+          <div class="app-window">
+            <div class="app-sidebar" role="tablist" aria-label="Mactimize interactive preview tabs">
+              <div class="window-dots" aria-hidden="true">
+                <span class="dot-red"></span>
+                <span class="dot-yellow"></span>
+                <span class="dot-green"></span>
+              </div>
+
+              <div class="sidebar-brand">
+                <img src="favicon.svg" alt="" width="28" height="28" style="border-radius:7px;display:block;" />
+                <div>
+                  <strong>Mactimize</strong>
+                  <small>Clean · Speed up · Protect</small>
+                </div>
+              </div>
+
+              <div class="sidebar-disk">
+                <div class="sd-top"><span>Macintosh HD</span><strong>79%</strong></div>
+                <div class="sd-bar"><span style="width:79%"></span></div>
+                <small>69.4 GB free of 460 GB</small>
+              </div>
+
+              <div class="sidebar-group-label">WORKSPACE</div>
+              <button type="button" class="sb-tab active" role="tab" aria-selected="true" data-tab="overview">
+                <span>⊞ Overview</span><small>28.9 GB</small>
+              </button>
+              <button type="button" class="sb-tab" role="tab" aria-selected="false" data-tab="devbloat">
+                <span>⌘ Dev Build Bloat</span><small>6.4 GB</small>
+              </button>
+              <button type="button" class="sb-tab" role="tab" aria-selected="false" data-tab="duplicates">
+                <span>❐ Duplicates</span><small>2.5 GB</small>
+              </button>
+              <button type="button" class="sb-tab" role="tab" aria-selected="false" data-tab="fans">
+                <span>❋ Fans &amp; Thermals</span><small class="txt-cyan">51°C</small>
+              </button>
+            </div>
+
+            <div class="app-main">
+              <!-- Panel 1: Overview -->
+              <div class="app-panel active" data-panel="overview">
+                <div class="panel-top">
+                  <div>
+                    <h2>Overview</h2>
+                    <p>Everything safe to clean, sorted and explained in plain English.</p>
+                  </div>
+                  <span class="glass-badge green">28.9 GB Safe</span>
+                </div>
+
+                <div class="overview-hero-tile">
+                  <div class="gauge-ring" aria-hidden="true">
+                    <svg viewBox="0 0 100 100">
+                      <circle class="g-track" cx="50" cy="50" r="42" />
+                      <circle class="g-fill" cx="50" cy="50" r="42" />
+                    </svg>
+                    <div class="g-label"><strong>79%</strong><span>used</span></div>
+                  </div>
+                  <div class="oht-copy">
+                    <div class="oht-big">28.9 GB <small>can be safely freed</small></div>
+                    <p>All items move to macOS Trash — never destructive <code>rm -rf</code>. Browser logins, passwords, and active source code remain 100% untouched.</p>
+                  </div>
+                </div>
+
+                <div class="compact-list">
+                  <div class="compact-row">
+                    <span class="chk checked" aria-hidden="true">✓</span>
+                    <div class="cr-info"><strong>npm Package Cache (_cacache)</strong><small>~/.npm/_cacache</small></div>
+                    <span class="tag safe">Safe</span>
+                    <span class="cr-size">10.0 GB</span>
+                  </div>
+                  <div class="compact-row">
+                    <span class="chk checked" aria-hidden="true">✓</span>
+                    <div class="cr-info"><strong>Chrome &amp; Brave Web Caches</strong><small>~/Library/Caches/Google</small></div>
+                    <span class="tag safe">Safe</span>
+                    <span class="cr-size">7.8 GB</span>
+                  </div>
+                  <div class="compact-row">
+                    <span class="chk checked" aria-hidden="true">✓</span>
+                    <div class="cr-info"><strong>Xcode DerivedData Build Cache</strong><small>~/Library/Developer/Xcode/DerivedData</small></div>
+                    <span class="tag safe">Safe</span>
+                    <span class="cr-size">651 MB</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Panel 2: Dev Bloat -->
+              <div class="app-panel" data-panel="devbloat" hidden>
+                <div class="panel-top">
+                  <div>
+                    <h2>Dev Build Bloat</h2>
+                    <p>Age-aware scanner for <code>node_modules</code>, Rust <code>target/</code>, <code>.next/</code>, and <code>.dart_tool/</code>.</p>
+                  </div>
+                  <span class="glass-badge indigo">Age-Aware</span>
+                </div>
+                <div class="compact-list">
+                  <div class="compact-row">
+                    <span class="chk checked" aria-hidden="true">✓</span>
+                    <div class="cr-info"><strong>Killer-Project → node_modules</strong><small>Inactive 174 days · npm install restores anytime</small></div>
+                    <span class="tag safe">Safe</span>
+                    <span class="cr-size">541 MB</span>
+                  </div>
+                  <div class="compact-row">
+                    <span class="chk checked" aria-hidden="true">✓</span>
+                    <div class="cr-info"><strong>Rust-Workspace → target/</strong><small>Inactive 64 days · cargo build restores anytime</small></div>
+                    <span class="tag safe">Safe</span>
+                    <span class="cr-size">1.84 GB</span>
+                  </div>
+                  <div class="compact-row">
+                    <span class="chk" aria-hidden="true"></span>
+                    <div class="cr-info"><strong>Active-Platform → .next/</strong><small>Modified today · Unchecked by default</small></div>
+                    <span class="tag review">Review</span>
+                    <span class="cr-size">506 MB</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Panel 3: Duplicates -->
+              <div class="app-panel" data-panel="duplicates" hidden>
+                <div class="panel-top">
+                  <div>
+                    <h2>SHA-256 Duplicates &amp; Archives</h2>
+                    <p>Cryptographically verified with Apple CryptoKit + native Quick Look preview.</p>
+                  </div>
+                  <span class="glass-badge blue">CryptoKit</span>
+                </div>
+                <div class="compact-list">
+                  <div class="compact-row">
+                    <span class="chk checked" aria-hidden="true">✓</span>
+                    <div class="cr-info"><strong>fast track-20260806.zip (Already Extracted)</strong><small>Kept folder: ~/Downloads/fast track/</small></div>
+                    <span class="tag safe">Safe</span>
+                    <span class="cr-size">978 MB</span>
+                  </div>
+                  <div class="compact-row">
+                    <span class="chk checked" aria-hidden="true">✓</span>
+                    <div class="cr-info"><strong>IMG_3601 3.MOV (SHA-256 Identical)</strong><small>Kept original: Photos/Block 2.O trip/IMG_3601 2.MOV</small></div>
+                    <span class="tag safe">Safe</span>
+                    <span class="cr-size">92.5 MB</span>
+                  </div>
+                  <div class="compact-row">
+                    <span class="chk checked" aria-hidden="true">✓</span>
+                    <div class="cr-info"><strong>.com.google.Chrome.sLzhVX</strong><small>Abandoned incomplete Chrome temp download</small></div>
+                    <span class="tag safe">Safe</span>
+                    <span class="cr-size">214 MB</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Panel 4: Fans & SMC -->
+              <div class="app-panel" data-panel="fans" hidden>
+                <div class="panel-top">
+                  <div>
+                    <h2>Fans &amp; Thermals</h2>
+                    <p>Live AppleSMC telemetry · Auto-detects dual fans or fanless MacBook Air.</p>
+                  </div>
+                  <span class="glass-badge cyan">Live · 2s</span>
+                </div>
+                <div class="mini-fan-cards">
+                  <div class="mfc">
+                    <div class="mfc-top"><span>Left Side Fan</span><span class="tag safe">Auto</span></div>
+                    <div class="mfc-rpm">3,423 <small>RPM</small></div>
+                    <div class="sd-bar cyan"><span style="width:43%"></span></div>
+                  </div>
+                  <div class="mfc">
+                    <div class="mfc-top"><span>Right Side Fan</span><span class="tag safe">Auto</span></div>
+                    <div class="mfc-rpm">3,409 <small>RPM</small></div>
+                    <div class="sd-bar cyan"><span style="width:42%"></span></div>
+                  </div>
+                </div>
+                <div class="mini-sensors">
+                  <div><span>CPU Core Avg</span><strong class="txt-green">51°C</strong></div>
+                  <div><span>GPU Cluster</span><strong class="txt-green">50°C</strong></div>
+                  <div><span>Airflow Left</span><strong class="txt-green">42°C</strong></div>
+                  <div><span>Battery</span><strong class="txt-green">36°C</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Apple Keynote Asymmetric Bento Grid -->
+    <section id="bento" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow-text">Built for Mac. Down to the silicon.</span>
+          <h2>Big cleanup.<br />Microscopic footprint.</h2>
+        </div>
+
+        <div class="bento-grid">
+          <!-- Big Hero Bento Tile 1 -->
+          <article class="bento-card span-2 spotlight reveal">
+            <div class="bento-kicker">Zero Bloat. Literally.</div>
+            <div class="bento-big-stat">&lt; 500 KB</div>
+            <h3>An app built to save space shouldn’t take it up.</h3>
+            <p>
+              Most cleaners ship a 300 MB bundle that quietly drains your memory just to tell you your Mac is full.
+              Mactimize is compiled straight to native Swift — zero third-party frameworks, instant launch, and whisper-light memory usage.
+            </p>
+            <div class="chip-row">
+              <span class="glass-chip">Pure SwiftUI</span>
+              <span class="glass-chip">CryptoKit SHA-256</span>
+              <span class="glass-chip">Native QuickLookUI</span>
+              <span class="glass-chip">Direct AppleSMC</span>
+            </div>
+          </article>
+
+          <!-- Bento Tile 2 -->
+          <article class="bento-card spotlight reveal">
+            <div class="bento-kicker">Made for Builders</div>
+            <h3>Reclaim gigabytes from yesterday’s projects.</h3>
+            <p>Automatically uncovers towering <code>node_modules</code>, Rust <code>target/</code>, <code>.next/</code>, and <code>.dart_tool/</code> folders. Stale projects are ready to clear; today’s active work stays untouched.</p>
+            <div class="mini-bars" aria-hidden="true">
+              <div><span>Rust target/</span><i style="width:92%"></i></div>
+              <div><span>node_modules</span><i style="width:68%"></i></div>
+              <div><span>Next.js .next</span><i style="width:45%"></i></div>
+            </div>
+          </article>
+
+          <!-- Bento Tile 3 -->
+          <article class="bento-card spotlight reveal">
+            <div class="bento-kicker">Every Byte, Verified</div>
+            <h3>Exact duplicates. Gone in a glance.</h3>
+            <p>Never guesses by filename. Powered by hardware-accelerated Apple CryptoKit SHA-256, it keeps your original safe and spots every redundant copy and already-unzipped archive.</p>
+            <div class="hash-pill" aria-hidden="true">sha256: 8f4e9c…21a0 ✓ verified identical</div>
+          </article>
+
+          <!-- Bento Tile 4 -->
+          <article class="bento-card spotlight reveal">
+            <div class="bento-kicker">See Before You Sweep</div>
+            <h3>Quick Look. Built right in.</h3>
+            <p>Clean, scannable rows stay out of your way until you need more. Click any item to open the Details Inspector, preview videos and PDFs natively, or reveal it in Finder.</p>
+          </article>
+
+          <!-- Bento Tile 5 -->
+          <article class="bento-card span-2 spotlight reveal">
+            <div class="bento-kicker">Instant Responsiveness</div>
+            <h3>Silence what runs behind the scenes.</h3>
+            <p>
+              Expose every hidden LaunchAgent, root LaunchDaemon, and orphaned startup file slowing down your login — and see the true combined memory footprint of multi-process browsers and desktop apps so you can free gigabytes of RAM in a single click.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Apple SMC Cooling Section -->
+    <section id="cooling" class="section">
+      <div class="container cooling-shell spotlight reveal">
+        <div class="cooling-copy">
+          <span class="eyebrow-text cyan">Cool Under Pressure</span>
+          <h2>Total thermal command.<br />Zero background tax.</h2>
+          <p>
+            Read live Left &amp; Right fan speeds and CPU, GPU, Airflow, and Battery temperatures straight from <code>AppleSMC</code> — no password required.
+            Pushing through a heavy Xcode or Rust build? Dial in maximum cooling with Touch ID. Unplugged on battery? Tap <strong>Stop Tracking</strong> and let your Mac breathe in silence.
+          </p>
+
+          <div class="cooling-features">
+            <div><strong>Fanless Mac Ready</strong><span>Automatically adapts to sensors-only mode on MacBook Air.</span></div>
+            <div><strong>Built-In Thermal Guard</strong><span>Alerts you before setting low fan speeds while your CPU runs hot.</span></div>
+          </div>
+        </div>
+
+        <div class="cooling-interactive">
+          <div class="fan-visual-stage">
+            <svg class="fan-svg" id="fanSvg" viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="56" class="fan-housing" />
+              <g class="fan-rotor" id="fanRotor">
+                <path d="M60 60 C52 34, 68 12, 82 22 C88 30, 74 48, 60 60 Z" />
+                <path d="M60 60 C52 34, 68 12, 82 22 C88 30, 74 48, 60 60 Z" transform="rotate(60 60 60)" />
+                <path d="M60 60 C52 34, 68 12, 82 22 C88 30, 74 48, 60 60 Z" transform="rotate(120 60 60)" />
+                <path d="M60 60 C52 34, 68 12, 82 22 C88 30, 74 48, 60 60 Z" transform="rotate(180 60 60)" />
+                <path d="M60 60 C52 34, 68 12, 82 22 C88 30, 74 48, 60 60 Z" transform="rotate(240 60 60)" />
+                <path d="M60 60 C52 34, 68 12, 82 22 C88 30, 74 48, 60 60 Z" transform="rotate(300 60 60)" />
+              </g>
+              <circle cx="60" cy="60" r="14" class="fan-hub" />
+            </svg>
+
+            <div class="fan-stats">
+              <span class="tag safe" id="simModeBadge">Auto</span>
+              <div class="fan-big-rpm"><span id="simRpmVal">3,600</span> <small>RPM</small></div>
+              <div class="fan-temp">Simulated CPU: <strong id="simTempVal">62°C</strong></div>
+            </div>
+          </div>
+
+          <label class="slider-caption" for="fanSlider">Drag to test live rotor speed &amp; thermal guard (2,317 – 6,800 RPM)</label>
+          <input id="fanSlider" type="range" min="2317" max="6800" step="100" value="3600" />
+
+          <div class="preset-pills">
+            <button type="button" class="pill-btn active" data-rpm="auto">macOS Auto</button>
+            <button type="button" class="pill-btn" data-rpm="3500">Balanced</button>
+            <button type="button" class="pill-btn" data-rpm="5000">High Cooling</button>
+            <button type="button" class="pill-btn" data-rpm="6800">Full Blast</button>
+          </div>
+
+          <p class="thermal-alert" id="simWarning" hidden>
+            ⚠ CPU is running hot — Mactimize warns before forcing low fan speeds during heavy workloads.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Safety Model Section -->
+    <section id="safety" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow-text green">Safety. Built into every click.</span>
+          <h2>Know what stays.<br />Know what goes.</h2>
+        </div>
+
+        <div class="safety-trio">
+          <article class="tier-card safe spotlight reveal">
+            <span class="tag safe">Safe to Clean</span>
+            <h3>Zero second thoughts.</h3>
+            <p>Browser media caches, package tarballs, SHA-256 duplicates, already-extracted archives, and inactive project builds. Ready for one-click cleanup with zero side effects.</p>
+          </article>
+
+          <article class="tier-card review spotlight reveal">
+            <span class="tag review">Review / Caution</span>
+            <h3>Your call, always.</h3>
+            <p>Large videos, active projects modified this week, cross-compiler SDKs, and background database servers. Always left unchecked until you preview and approve.</p>
+          </article>
+
+          <article class="tier-card keep spotlight reveal">
+            <span class="tag keep">System / Keep</span>
+            <h3>Locked and protected.</h3>
+            <p>Core macOS system caches, WindowServer, your active IDE, and live project dependencies. Off-limits so your Mac stays rock-solid.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section id="compare" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="eyebrow-text">Why Native Matters</span>
+          <h2>Feels like Apple built it.<br />Runs like nothing’s there.</h2>
+        </div>
+
+        <div class="glass-table-wrap reveal">
+          <table class="glass-table">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col" class="col-featured">Mactimize (Native Swift)</th>
+                <th scope="col">Subscription Cleaners</th>
+                <th scope="col">Electron Utilities</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>App Bundle Size</td>
+                <td class="col-featured"><strong>&lt; 500 KB</strong></td>
+                <td>180 – 350 MB</td>
+                <td>250 – 450 MB</td>
+              </tr>
+              <tr>
+                <td>Idle Memory</td>
+                <td class="col-featured"><strong>~25 MB</strong></td>
+                <td>180 – 320 MB</td>
+                <td>280 – 500 MB</td>
+              </tr>
+              <tr>
+                <td>Developer Build Bloat (<code>node_modules</code>, <code>target/</code>)</td>
+                <td class="col-featured"><strong>✓ Age-aware (&gt;14 days)</strong></td>
+                <td>Manual / Limited</td>
+                <td>Rarely supported</td>
+              </tr>
+              <tr>
+                <td>Apple Silicon SMC Fan &amp; Thermal Control</td>
+                <td class="col-featured"><strong>✓ Built-in + Stop Tracking</strong></td>
+                <td>Not included</td>
+                <td>Not included</td>
+              </tr>
+              <tr>
+                <td>Privacy &amp; Pricing</td>
+                <td class="col-featured"><strong>100% Local · Free</strong></td>
+                <td>$40–$90/yr + telemetry</td>
+                <td>Varies</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Download & Build CTA -->
+    <section id="download" class="section">
+      <div class="container">
+        <div class="download-glass reveal">
+          <div>
+            <span class="eyebrow-text">Ready in Five Seconds</span>
+            <h2>Give your Mac its edge back.</h2>
+            <p>Built for macOS 13 Ventura, Sonoma, Sequoia, and beyond. Free, local, and under 1 MB — drag <strong>Mactimize</strong> straight into Applications.</p>
+            <div class="hero-actions" style="margin-top:20px;justify-content:flex-start;">
+              <a class="btn-apple-blue" href="https://github.com/RavvyS/Mactimize/releases/latest/download/Mactimize.dmg">
+                Download Mactimize.dmg
+                <span aria-hidden="true">↓</span>
+              </a>
+              <a class="btn-apple-glass" href="https://github.com/RavvyS/Mactimize" target="_blank" rel="noopener noreferrer">
+                View on GitHub
+              </a>
+            </div>
+            <p style="font-size:12px;margin-top:14px;">
+              <strong>First launch tip:</strong> Since Mactimize is an indie unsigned build, right-click <code>Mactimize.app</code> → <em>Open</em> on first launch, or run <code>xattr -cr /Applications/Mactimize.app</code>.
+            </p>
+          </div>
+
+          <div class="code-window">
+            <div class="code-head">
+              <div class="window-dots sm" aria-hidden="true">
+                <span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span>
+              </div>
+              <span>Or build from source · zsh</span>
+              <button type="button" class="copy-btn" id="copyCmdBtn">Copy</button>
+            </div>
+            <pre><code id="installCommands">git clone https://github.com/RavvyS/Mactimize.git
+cd Mactimize
+./build_app.sh
+open build/Mactimize.app</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container faq-wrap">
+        <div class="section-header reveal">
+          <span class="eyebrow-text">Answers</span>
+          <h2>Frequently Asked Questions</h2>
+        </div>
+
+        <div class="faq-stack reveal">
+          <details name="faq" open>
+            <summary>Will cleaning browser caches log me out or erase bookmarks?</summary>
+            <p>No. Mactimize only cleans temporary media &amp; script caches in <code>~/Library/Caches</code>. Your logins, cookies, passwords, and bookmarks are stored in <code>Application Support</code> and remain completely untouched.</p>
+          </details>
+          <details name="faq">
+            <summary>Does Mactimize permanently delete files?</summary>
+            <p>No. All cleaned caches, duplicates, and user LaunchAgents are moved safely to the macOS Trash via <code>FileManager.trashItem</code> so you can restore anything anytime with Finder's “Put Back”.</p>
+          </details>
+          <details name="faq">
+            <summary>How does fan control work on fanless MacBook Air vs MacBook Pro?</summary>
+            <p>Mactimize reads <code>FNum</code> directly from AppleSMC. On MacBook Pro it displays Left &amp; Right fan sliders and presets; on fanless Macs it automatically shows “Fanless Mac Detected” while still displaying all live thermal sensors.</p>
+          </details>
+          <details name="faq">
+            <summary>Does fan tracking drain battery in the background?</summary>
+            <p>You stay in full control: click <strong>Stop Tracking</strong> inside the Fans &amp; Thermals tab or the Menu Bar dropdown to completely stop the 2-second SMC polling timer whenever you're on battery.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <span><strong>Mactimize</strong> — Native SwiftUI Utility for macOS</span>
+      <div class="footer-nav">
+        <a href="#bento">Highlights</a>
+        <a href="#cooling">Fans &amp; SMC</a>
+        <a href="#safety">Safety</a>
+        <a href="#download">Download</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Native <dialog> Modal -->
+  <dialog id="safetyDialog" class="glass-dialog" aria-labelledby="safetyDialogTitle">
+    <div class="gd-head">
+      <h2 id="safetyDialogTitle">Read-First Safety Model</h2>
+      <button type="button" class="gd-close" id="closeSafetyDialogBtn" aria-label="Close">✕</button>
+    </div>
+    <div class="gd-body">
+      <p>Every action in Mactimize is engineered to protect your data and active work:</p>
+      <ul>
+        <li><strong>macOS Trash Only:</strong> Never runs destructive <code>rm -rf</code> — restore anything from Trash.</li>
+        <li><strong>Apple CryptoKit SHA-256:</strong> Duplicate files are verified byte-for-byte with the original copy always kept.</li>
+        <li><strong>Active Project Shield:</strong> Recently modified <code>node_modules</code> and <code>target/</code> folders stay unchecked by default.</li>
+      </ul>
+    </div>
+    <div class="gd-foot">
+      <button type="button" class="btn-apple-blue sm" id="ackSafetyDialogBtn">Got It</button>
+    </div>
+  </dialog>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
