@@ -160,12 +160,12 @@ code {
 }
 .pulse-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
 .hero-title {
-  margin: 0 0 14px; font-size: clamp(2.5rem, 5.2vw, 4.1rem);
-  font-weight: 800; line-height: 1.05; letter-spacing: -0.04em;
+  margin: 0 0 16px; font-size: clamp(2.4rem, 4.9vw, 3.85rem);
+  font-weight: 700; line-height: 1.08; letter-spacing: -0.04em;
+  color: var(--text);
 }
-.apple-gradient {
-  background: linear-gradient(95deg, #0071e3 0%, #0891b2 55%, #16a34a 100%);
-  -webkit-background-clip: text; background-clip: text; color: transparent;
+.hero-title-sub {
+  color: var(--text-2);
 }
 .hero-desc { margin: 0 auto 24px; max-width: 54ch; font-size: 16px; color: var(--text-2); }
 .hero-actions { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
