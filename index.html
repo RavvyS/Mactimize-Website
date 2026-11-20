@@ -74,181 +74,26 @@
         </div>
       </div>
 
-      <!-- Clean Interactive macOS Preview -->
+      <!-- Real App Interactive Screenshot Showcase -->
       <div class="container stage-wrap reveal">
-        <div class="macos-desktop-frame">
-          <div class="macos-menubar">
-            <div class="menubar-left">
-              <span class="apple-mark" aria-hidden="true"></span>
-              <strong>Mactimize</strong>
-            </div>
-            <div class="menubar-right">
-              <button type="button" class="menubar-widget-btn" id="menuBarToggleBtn" aria-expanded="false" aria-controls="menuBarPopover">
-                <span class="mb-sparkle" aria-hidden="true">◉</span>
-                <span id="mbLiveStats">47°C · 81 GB Free</span>
-              </button>
-              <span class="menubar-time">23:45</span>
-            </div>
+        <div class="showcase-pills" role="tablist" aria-label="Mactimize live app views">
+          <button type="button" class="sc-pill active" role="tab" aria-selected="true" data-shot="assets/screen-overview.jpg" data-alt="Mactimize Overview dashboard showing Macintosh HD 83% used and 16.27 GB safe to free">Overview</button>
+          <button type="button" class="sc-pill" role="tab" aria-selected="false" data-shot="assets/screen-caches.jpg" data-alt="Mactimize Caches view showing browser and Xcode caches with Safe, Review, and Keep badges">Caches</button>
+          <button type="button" class="sc-pill" role="tab" aria-selected="false" data-shot="assets/screen-devbloat.jpg" data-alt="Mactimize Dev Build Bloat view showing multi-gigabyte node_modules and Rust target build folders">Dev Bloat</button>
+          <button type="button" class="sc-pill" role="tab" aria-selected="false" data-shot="assets/screen-startup.jpg" data-alt="Mactimize Startup Items view auditing LaunchAgents and LaunchDaemons">Startup Items</button>
+          <button type="button" class="sc-pill" role="tab" aria-selected="false" data-shot="assets/screen-memory.jpg" data-alt="Mactimize Memory & CPU view showing multi-process RAM consumption">Memory &amp; CPU</button>
+          <button type="button" class="sc-pill" role="tab" aria-selected="false" data-shot="assets/screen-fans.jpg" data-alt="Mactimize Fans & Thermals view showing dual 6,840 RPM fan controls and 11 live temperature sensors">Fans &amp; Thermals</button>
+        </div>
 
-            <div class="menubar-popover" id="menuBarPopover" hidden>
-              <div class="mb-pop-head">
-                <div class="mb-ring" aria-hidden="true"><span>83%</span></div>
-                <div>
-                  <strong>Macintosh HD</strong>
-                  <small>81.3 GB free</small>
-                </div>
-              </div>
-              <div class="mb-pop-rows">
-                <div><span>Safe to clean</span><strong class="txt-green">14.56 GB</strong></div>
-                <div><span>Apps memory</span><strong class="txt-blue">7.24 GB</strong></div>
-                <div><span>CPU &amp; Fans</span><strong class="txt-cyan">47°C · 3420 RPM</strong></div>
-              </div>
-              <div class="mb-pop-actions">
-                <button type="button" class="mb-btn primary" id="mbQuickRamBtn">Free RAM</button>
-                <button type="button" class="mb-btn" id="mbPauseFanBtn">Stop Fans</button>
-              </div>
-              <div class="mb-pop-toast" id="mbToast" hidden></div>
-            </div>
-          </div>
-
-          <div class="app-window">
-            <div class="app-sidebar" role="tablist" aria-label="App preview tabs">
-              <div class="window-dots" aria-hidden="true">
-                <span class="dot-red"></span>
-                <span class="dot-yellow"></span>
-                <span class="dot-green"></span>
-              </div>
-
-              <div class="sidebar-brand">
-                <img src="favicon.svg" alt="" width="26" height="26" class="brand-logo" />
-                <strong>Mactimize</strong>
-              </div>
-
-              <div class="sidebar-disk">
-                <div class="sd-top"><span>Macintosh HD</span><strong>83%</strong></div>
-                <div class="sd-bar orange"><span style="width:83%"></span></div>
-              </div>
-
-              <button type="button" class="sb-tab active" role="tab" aria-selected="true" data-tab="overview">
-                <span>⊞ Overview</span><small>14.5 GB</small>
-              </button>
-              <button type="button" class="sb-tab" role="tab" aria-selected="false" data-tab="devbloat">
-                <span>⌘ Dev Bloat</span><small>16.6 GB</small>
-              </button>
-              <button type="button" class="sb-tab" role="tab" aria-selected="false" data-tab="duplicates">
-                <span>❐ Duplicates</span><small>2.5 GB</small>
-              </button>
-              <button type="button" class="sb-tab" role="tab" aria-selected="false" data-tab="fans">
-                <span>❋ Fans</span><small class="txt-cyan">47°C</small>
-              </button>
-            </div>
-
-            <div class="app-main">
-              <div class="app-panel active" data-panel="overview">
-                <div class="overview-hero-tile">
-                  <div class="gauge-ring" aria-hidden="true">
-                    <svg viewBox="0 0 100 100">
-                      <circle class="g-track" cx="50" cy="50" r="42" />
-                      <circle class="g-fill" cx="50" cy="50" r="42" />
-                    </svg>
-                    <div class="g-label"><strong>83%</strong><span>used</span></div>
-                  </div>
-                  <div class="oht-copy">
-                    <div class="oht-big">14.56 GB <small>safe to free</small></div>
-                    <p>Moves safely to macOS Trash.</p>
-                  </div>
-                </div>
-
-                <div class="compact-list">
-                  <div class="compact-row">
-                    <span class="chk checked" aria-hidden="true">✓</span>
-                    <div class="cr-info"><strong>npm &amp; Browser Caches</strong><small>~/.npm · ~/Library/Caches</small></div>
-                    <span class="tag safe">Safe</span>
-                    <span class="cr-size">4.82 GB</span>
-                  </div>
-                  <div class="compact-row">
-                    <span class="chk checked" aria-hidden="true">✓</span>
-                    <div class="cr-info"><strong>Inactive Dev Builds</strong><small>node_modules · target/</small></div>
-                    <span class="tag safe">Safe</span>
-                    <span class="cr-size">8.91 GB</span>
-                  </div>
-                  <div class="compact-row">
-                    <span class="chk checked" aria-hidden="true">✓</span>
-                    <div class="cr-info"><strong>Xcode DerivedData</strong><small>~/Library/Developer/Xcode</small></div>
-                    <span class="tag safe">Safe</span>
-                    <span class="cr-size">651 MB</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="app-panel" data-panel="devbloat" hidden>
-                <div class="compact-list">
-                  <div class="compact-row">
-                    <span class="chk checked" aria-hidden="true">✓</span>
-                    <div class="cr-info"><strong>Killer-Project → node_modules</strong><small>Inactive 174 days</small></div>
-                    <span class="tag safe">Safe</span>
-                    <span class="cr-size">541 MB</span>
-                  </div>
-                  <div class="compact-row">
-                    <span class="chk checked" aria-hidden="true">✓</span>
-                    <div class="cr-info"><strong>Rust-Workspace → target/</strong><small>Inactive 64 days</small></div>
-                    <span class="tag safe">Safe</span>
-                    <span class="cr-size">1.84 GB</span>
-                  </div>
-                  <div class="compact-row">
-                    <span class="chk" aria-hidden="true"></span>
-                    <div class="cr-info"><strong>Active-Platform → .next/</strong><small>Modified today</small></div>
-                    <span class="tag review">Review</span>
-                    <span class="cr-size">506 MB</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="app-panel" data-panel="duplicates" hidden>
-                <div class="compact-list">
-                  <div class="compact-row">
-                    <span class="chk checked" aria-hidden="true">✓</span>
-                    <div class="cr-info"><strong>fast track-20260806.zip</strong><small>Already extracted</small></div>
-                    <span class="tag safe">Safe</span>
-                    <span class="cr-size">978 MB</span>
-                  </div>
-                  <div class="compact-row">
-                    <span class="chk checked" aria-hidden="true">✓</span>
-                    <div class="cr-info"><strong>IMG_3601 3.MOV</strong><small>SHA-256 exact match</small></div>
-                    <span class="tag safe">Safe</span>
-                    <span class="cr-size">92.5 MB</span>
-                  </div>
-                  <div class="compact-row">
-                    <span class="chk checked" aria-hidden="true">✓</span>
-                    <div class="cr-info"><strong>.com.google.Chrome.sLzhVX</strong><small>Incomplete download</small></div>
-                    <span class="tag safe">Safe</span>
-                    <span class="cr-size">214 MB</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="app-panel" data-panel="fans" hidden>
-                <div class="mini-fan-cards">
-                  <div class="mfc">
-                    <div class="mfc-top"><span>Left Fan</span><span class="tag safe">Auto</span></div>
-                    <div class="mfc-rpm">3,423 <small>RPM</small></div>
-                    <div class="sd-bar cyan"><span style="width:43%"></span></div>
-                  </div>
-                  <div class="mfc">
-                    <div class="mfc-top"><span>Right Fan</span><span class="tag safe">Auto</span></div>
-                    <div class="mfc-rpm">3,409 <small>RPM</small></div>
-                    <div class="sd-bar cyan"><span style="width:42%"></span></div>
-                  </div>
-                </div>
-                <div class="mini-sensors">
-                  <div><span>CPU</span><strong class="txt-green">47°C</strong></div>
-                  <div><span>GPU</span><strong class="txt-green">46°C</strong></div>
-                  <div><span>Airflow</span><strong class="txt-green">41°C</strong></div>
-                  <div><span>Battery</span><strong class="txt-green">35°C</strong></div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="real-shot-frame">
+          <img
+            id="showcaseImage"
+            src="assets/screen-overview.jpg"
+            alt="Mactimize Overview dashboard showing Macintosh HD 83% used and 16.27 GB safe to free"
+            width="1240"
+            height="780"
+            decoding="async"
+          />
         </div>
       </div>
     </section>

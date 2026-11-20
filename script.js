@@ -23,62 +23,29 @@ themeBtn?.addEventListener('click', () => {
   setTheme(current === 'dark' ? 'light' : 'dark');
 });
 
-// 2. Interactive macOS Menu Bar Popover
-const mbToggle = document.getElementById('menuBarToggleBtn');
-const mbPopover = document.getElementById('menuBarPopover');
-const mbQuickRamBtn = document.getElementById('mbQuickRamBtn');
-const mbPauseFanBtn = document.getElementById('mbPauseFanBtn');
-const mbToast = document.getElementById('mbToast');
-const mbLiveStats = document.getElementById('mbLiveStats');
-let trackingPaused = false;
+// 2. Real App Screenshot Showcase Tab Switcher
+const scPills = document.querySelectorAll('.sc-pill[data-shot]');
+const showcaseImg = document.getElementById('showcaseImage');
 
-mbToggle?.addEventListener('click', (e) => {
-  e.stopPropagation();
-  const isOpen = !mbPopover.hidden;
-  mbPopover.hidden = isOpen;
-  mbToggle.setAttribute('aria-expanded', String(!isOpen));
-});
-
-document.addEventListener('click', (e) => {
-  if (mbPopover && !mbPopover.hidden && !mbPopover.contains(e.target) && e.target !== mbToggle) {
-    mbPopover.hidden = true;
-    mbToggle?.setAttribute('aria-expanded', 'false');
-  }
-});
-
-mbQuickRamBtn?.addEventListener('click', () => {
-  if (!mbToast) return;
-  mbToast.textContent = '✓ Freed 1.1 GB RAM from idle background apps.';
-  mbToast.hidden = false;
-});
-
-mbPauseFanBtn?.addEventListener('click', () => {
-  trackingPaused = !trackingPaused;
-  mbPauseFanBtn.textContent = trackingPaused ? 'Resume Fan Tracking' : 'Stop Fan Tracking';
-  if (mbLiveStats) mbLiveStats.textContent = trackingPaused ? 'Paused · 69 GB Free' : '51°C · 69 GB Free';
-  if (mbToast) {
-    mbToast.textContent = trackingPaused ? 'Fan SMC polling paused to save battery.' : 'Live 2s fan polling resumed.';
-    mbToast.hidden = false;
-  }
-});
-
-// 3. Interactive App Preview Sidebar Tabs
-const sbTabs = document.querySelectorAll('.sb-tab[data-tab]');
-const appPanels = document.querySelectorAll('.app-panel[data-panel]');
-
-sbTabs.forEach((tab) => {
-  tab.addEventListener('click', () => {
-    const key = tab.dataset.tab;
-    sbTabs.forEach((t) => {
-      const active = t.dataset.tab === key;
-      t.classList.toggle('active', active);
-      t.setAttribute('aria-selected', String(active));
+scPills.forEach((pill) => {
+  pill.addEventListener('click', () => {
+    const nextSrc = pill.dataset.shot;
+    const nextAlt = pill.dataset.alt || 'Mactimize app screenshot';
+    scPills.forEach((p) => {
+      const active = p === pill;
+      p.classList.toggle('active', active);
+      p.setAttribute('aria-selected', String(active));
     });
-    appPanels.forEach((panel) => {
-      const match = panel.dataset.panel === key;
-      panel.hidden = !match;
-      panel.classList.toggle('active', match);
-    });
+    if (showcaseImg && showcaseImg.getAttribute('src') !== nextSrc) {
+      showcaseImg.classList.add('fading');
+      const preload = new Image();
+      preload.onload = () => {
+        showcaseImg.src = nextSrc;
+        showcaseImg.alt = nextAlt;
+        showcaseImg.classList.remove('fading');
+      };
+      preload.src = nextSrc;
+    }
   });
 });
 
