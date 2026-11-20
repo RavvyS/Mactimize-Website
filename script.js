@@ -23,26 +23,26 @@ themeBtn?.addEventListener('click', () => {
   setTheme(current === 'dark' ? 'light' : 'dark');
 });
 
-// 2. Real App Screenshot Showcase Tab Switcher
-const scPills = document.querySelectorAll('.sc-pill[data-shot]');
-const showcaseImg = document.getElementById('showcaseImage');
+// 2. Interactive Sidebar -> Real Cropped App Pane Switcher
+const sidebarTabs = document.querySelectorAll('.demo-sidebar .sb-tab[data-pane]');
+const livePaneImg = document.getElementById('livePaneImage');
 
-scPills.forEach((pill) => {
-  pill.addEventListener('click', () => {
-    const nextSrc = pill.dataset.shot;
-    const nextAlt = pill.dataset.alt || 'Mactimize app screenshot';
-    scPills.forEach((p) => {
-      const active = p === pill;
-      p.classList.toggle('active', active);
-      p.setAttribute('aria-selected', String(active));
+sidebarTabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    const nextSrc = tab.dataset.pane;
+    const nextAlt = tab.dataset.alt || 'Mactimize app view';
+    sidebarTabs.forEach((t) => {
+      const active = t === tab;
+      t.classList.toggle('active', active);
+      t.setAttribute('aria-selected', String(active));
     });
-    if (showcaseImg && showcaseImg.getAttribute('src') !== nextSrc) {
-      showcaseImg.classList.add('fading');
+    if (livePaneImg && livePaneImg.getAttribute('src') !== nextSrc) {
+      livePaneImg.classList.add('fading');
       const preload = new Image();
       preload.onload = () => {
-        showcaseImg.src = nextSrc;
-        showcaseImg.alt = nextAlt;
-        showcaseImg.classList.remove('fading');
+        livePaneImg.src = nextSrc;
+        livePaneImg.alt = nextAlt;
+        livePaneImg.classList.remove('fading');
       };
       preload.src = nextSrc;
     }

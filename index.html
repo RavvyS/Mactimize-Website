@@ -74,26 +74,75 @@
         </div>
       </div>
 
-      <!-- Real App Interactive Screenshot Showcase -->
+      <!-- Interactive macOS Mactimize Window (Real Clickable Sidebar + Real App Data Panes) -->
       <div class="container stage-wrap reveal">
-        <div class="showcase-pills" role="tablist" aria-label="Mactimize live app views">
-          <button type="button" class="sc-pill active" role="tab" aria-selected="true" data-shot="assets/screen-overview.jpg" data-alt="Mactimize Overview dashboard showing Macintosh HD 83% used and 16.27 GB safe to free">Overview</button>
-          <button type="button" class="sc-pill" role="tab" aria-selected="false" data-shot="assets/screen-caches.jpg" data-alt="Mactimize Caches view showing browser and Xcode caches with Safe, Review, and Keep badges">Caches</button>
-          <button type="button" class="sc-pill" role="tab" aria-selected="false" data-shot="assets/screen-devbloat.jpg" data-alt="Mactimize Dev Build Bloat view showing multi-gigabyte node_modules and Rust target build folders">Dev Bloat</button>
-          <button type="button" class="sc-pill" role="tab" aria-selected="false" data-shot="assets/screen-startup.jpg" data-alt="Mactimize Startup Items view auditing LaunchAgents and LaunchDaemons">Startup Items</button>
-          <button type="button" class="sc-pill" role="tab" aria-selected="false" data-shot="assets/screen-memory.jpg" data-alt="Mactimize Memory & CPU view showing multi-process RAM consumption">Memory &amp; CPU</button>
-          <button type="button" class="sc-pill" role="tab" aria-selected="false" data-shot="assets/screen-fans.jpg" data-alt="Mactimize Fans & Thermals view showing dual 6,840 RPM fan controls and 11 live temperature sensors">Fans &amp; Thermals</button>
-        </div>
+        <div class="macos-desktop-frame interactive-demo-window">
+          <!-- Authentic macOS Window Titlebar -->
+          <div class="macos-titlebar">
+            <div class="window-dots" aria-hidden="true">
+              <span class="dot-red"></span>
+              <span class="dot-yellow"></span>
+              <span class="dot-green"></span>
+            </div>
+            <span class="macos-titlebar-text">Mactimize</span>
+            <span class="demo-hint-pill">Interactive · Click sidebar</span>
+          </div>
 
-        <div class="real-shot-frame">
-          <img
-            id="showcaseImage"
-            src="assets/screen-overview.jpg"
-            alt="Mactimize Overview dashboard showing Macintosh HD 83% used and 16.27 GB safe to free"
-            width="1240"
-            height="780"
-            decoding="async"
-          />
+          <div class="demo-split">
+            <!-- Clickable Native-Style Sidebar (matches Mactimize.app) -->
+            <aside class="demo-sidebar" role="tablist" aria-label="Mactimize sections">
+              <div class="sidebar-brand">
+                <img src="favicon.svg" alt="" width="28" height="28" class="brand-logo" />
+                <div>
+                  <strong>Mactimize</strong>
+                  <small>Clean · Speed up · Protect</small>
+                </div>
+              </div>
+
+              <div class="sidebar-disk">
+                <div class="sd-top"><span>Macintosh HD</span><strong>83%</strong></div>
+                <div class="sd-bar orange"><span style="width:83%"></span></div>
+                <small>79.24 GB free of 494.38 GB</small>
+              </div>
+
+              <div class="sidebar-group-label">OVERVIEW</div>
+              <button type="button" class="sb-tab active" role="tab" aria-selected="true" data-pane="assets/pane-overview.jpg" data-alt="Mactimize Overview showing Macintosh HD 83% used and 16.27 GB safe to free">
+                <span>⊞ Overview</span><small>16.27 GB</small>
+              </button>
+
+              <div class="sidebar-group-label">CLEANUP</div>
+              <button type="button" class="sb-tab" role="tab" aria-selected="false" data-pane="assets/pane-caches.jpg" data-alt="Mactimize Caches view showing browser and Xcode caches">
+                <span>◉ Caches</span><small>6.66 GB</small>
+              </button>
+              <button type="button" class="sb-tab" role="tab" aria-selected="false" data-pane="assets/pane-devbloat.jpg" data-alt="Mactimize Dev Build Bloat view showing node_modules and Rust target builds">
+                <span>⌘ Dev Build Bloat</span><small>16.59 GB</small>
+              </button>
+              <button type="button" class="sb-tab" role="tab" aria-selected="false" data-pane="assets/pane-leftovers.jpg" data-alt="Mactimize App Leftovers view showing orphaned Application Support folders">
+                <span>❖ App Leftovers</span><small>1.32 GB</small>
+              </button>
+
+              <div class="sidebar-group-label">SPEED &amp; COOLING</div>
+              <button type="button" class="sb-tab" role="tab" aria-selected="false" data-pane="assets/pane-startup.jpg" data-alt="Mactimize Startup Items auditing LaunchAgents and LaunchDaemons">
+                <span>⏻ Startup Items</span><small>26</small>
+              </button>
+              <button type="button" class="sb-tab" role="tab" aria-selected="false" data-pane="assets/pane-memory.jpg" data-alt="Mactimize Memory & CPU view showing multi-process RAM consumption">
+                <span>◔ Memory &amp; CPU</span><small>8.23 GB</small>
+              </button>
+              <button type="button" class="sb-tab" role="tab" aria-selected="false" data-pane="assets/pane-fans.jpg" data-alt="Mactimize Fans & Thermals view showing dual 6,840 RPM fan controls and 11 sensors">
+                <span>❋ Fans &amp; Thermals</span><small class="txt-cyan">47°C</small>
+              </button>
+            </aside>
+
+            <!-- Real Cropped App Screenshot Stage -->
+            <div class="demo-pane-stage">
+              <img
+                id="livePaneImage"
+                src="assets/pane-overview.jpg"
+                alt="Mactimize Overview showing Macintosh HD 83% used and 16.27 GB safe to free"
+                decoding="async"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </section>
