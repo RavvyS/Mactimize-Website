@@ -729,12 +729,75 @@ code {
 
 @media (max-width: 820px) {
   .nav-links, .mb-menu { display: none; }
-  .mactimize-window { flex-direction: column; height: auto; min-height: 620px; }
+  .mactimize-window { flex-direction: column; height: auto; min-height: 580px; }
   .mz-sidebar { width: 100%; border-right: 0; border-bottom: 1px solid var(--win-border); }
-  .mz-nav-scroll { display: flex; gap: 4px; overflow-x: auto; padding: 6px 10px; }
+  .mz-nav-scroll {
+    display: flex; gap: 6px; overflow-x: auto; padding: 8px 10px;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  .mz-nav-scroll::-webkit-scrollbar { display: none; }
   .mz-nav-group, .mz-sidebar-footer, .mz-disk-card { display: none; }
-  .mz-nav-btn { width: auto; flex: none; }
+  .mz-nav-btn {
+    width: auto; flex: none; padding: 6px 10px;
+    background: var(--win-card); border: 1px solid var(--win-border);
+  }
+  .mz-nav-btn.active { border-color: var(--blue); }
   .mz-fans-grid, .cooling-shell, .safety-trio, .pricing-card { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .container { width: calc(100% - 24px); }
+  .glass-nav { padding: 6px 8px 6px 12px; gap: 8px; }
+  .brand-name { font-size: 13.5px; }
+  .btn-glass-primary { padding: 6px 12px; font-size: 11.5px; white-space: nowrap; }
+
+  .hero { padding: 34px 0 48px; }
+  .hero-title { font-size: clamp(2rem, 8.5vw, 2.6rem); }
+  .hero-desc { font-size: 14.5px; margin-bottom: 20px; }
+  .hero-actions { width: 100%; flex-direction: column; }
+  .btn-apple-blue, .btn-apple-glass { width: 100%; justify-content: center; padding: 12px 18px; }
+
+  .menubar-time { display: none; }
+  .menubar-popover { width: calc(100% - 24px); right: 12px; }
+
+  .mz-window-bar, .mz-brand { padding: 8px 12px 4px; }
+  .mz-section-header { flex-wrap: wrap; padding: 12px 14px; }
+  .mz-sh-text p { white-space: normal; }
+  .mz-sh-actions { width: 100%; flex-wrap: wrap; }
+
+  .mz-filter-bar { padding: 8px 14px; gap: 8px; }
+  .mz-search-wrap { width: 100%; }
+  .mz-seg-group { width: 100%; justify-content: space-between; }
+  .mz-seg { flex: 1; text-align: center; padding: 5px 6px; }
+  .mz-filter-right { width: 100%; margin-left: 0; }
+  .mz-filter-right .mz-small-btn { flex: 1; }
+
+  .mz-canvas { padding: 12px 14px; max-height: 520px; }
+  .mz-hero-card { padding: 14px; gap: 14px; }
+  .mz-hero-btns { width: 100%; }
+  .mz-perm-banner { flex-direction: column; align-items: flex-start; }
+
+  .mz-stat-grid, .mz-cat-grid, .mz-sensor-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .mz-row { padding: 8px 10px; gap: 8px; }
+  .mz-row-size { min-width: 56px; font-size: 11px; }
+  .mz-ram-bar, .mz-chev { display: none; }
+
+  .mz-bottom-bar { flex-wrap: wrap; padding: 10px 14px; gap: 8px; }
+  .mz-status-text { width: 100%; font-size: 11px; }
+  .mz-bottom-right { width: 100%; justify-content: space-between; }
+
+  .section { padding: 52px 0; }
+  .cooling-shell, .pricing-card { padding: 22px; gap: 22px; border-radius: 20px; }
+  .cooling-interactive, .pricing-right { padding: 18px; }
+  .fan-visual-stage { gap: 14px; }
+  .fan-svg { width: 76px; height: 76px; }
+  .fan-big-rpm { font-size: 26px; }
+  .price-amount { font-size: 42px; }
+  .footer-row { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 400px) {
+  .mz-stat-grid, .mz-sensor-grid { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
