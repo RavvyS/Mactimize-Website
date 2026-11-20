@@ -31,6 +31,7 @@
 
       <nav class="nav-links" aria-label="Primary">
         <a href="#live-app">Live Demo</a>
+        <a href="#cooling">Fans</a>
         <a href="#safety">Safety</a>
         <a href="#download">Install</a>
       </nav>
@@ -196,6 +197,53 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Apple SMC Fan Rotor Showcase -->
+    <section id="cooling" class="section">
+      <div class="container cooling-shell">
+        <div class="cooling-copy">
+          <span class="eyebrow-text cyan">Apple SMC</span>
+          <h2>Cool under pressure.</h2>
+          <p>Live Left &amp; Right fan speeds and CPU temperatures — with presets, custom RPM, and a 1-click Stop Tracking toggle.</p>
+        </div>
+
+        <div class="cooling-interactive">
+          <div class="fan-visual-stage">
+            <svg class="fan-svg" id="fanSvg" viewBox="0 0 120 120" aria-hidden="true">
+              <circle cx="60" cy="60" r="56" class="fan-housing" />
+              <g class="fan-rotor" id="fanRotor">
+                <path d="M60 60 C52 34, 68 12, 82 22 C88 30, 74 48, 60 60 Z" />
+                <path d="M60 60 C52 34, 68 12, 82 22 C88 30, 74 48, 60 60 Z" transform="rotate(60 60 60)" />
+                <path d="M60 60 C52 34, 68 12, 82 22 C88 30, 74 48, 60 60 Z" transform="rotate(120 60 60)" />
+                <path d="M60 60 C52 34, 68 12, 82 22 C88 30, 74 48, 60 60 Z" transform="rotate(180 60 60)" />
+                <path d="M60 60 C52 34, 68 12, 82 22 C88 30, 74 48, 60 60 Z" transform="rotate(240 60 60)" />
+                <path d="M60 60 C52 34, 68 12, 82 22 C88 30, 74 48, 60 60 Z" transform="rotate(300 60 60)" />
+              </g>
+              <circle cx="60" cy="60" r="14" class="fan-hub" />
+            </svg>
+
+            <div class="fan-stats">
+              <span class="tag safe" id="simModeBadge">Auto</span>
+              <div class="fan-big-rpm"><span id="simRpmVal">3,600</span> <small>RPM</small></div>
+              <div class="fan-temp">CPU <strong id="simTempVal">62°C</strong></div>
+            </div>
+          </div>
+
+          <input id="fanSlider" type="range" min="2317" max="6800" step="100" value="3600" aria-label="Fan speed RPM" />
+
+          <div class="preset-pills">
+            <button type="button" class="pill-btn active" data-rpm="auto">Auto</button>
+            <button type="button" class="pill-btn" data-rpm="3500">Balanced</button>
+            <button type="button" class="pill-btn" data-rpm="5000">High</button>
+            <button type="button" class="pill-btn" data-rpm="6800">Max</button>
+          </div>
+
+          <p class="thermal-alert" id="simWarning" hidden>
+            ⚠ CPU is warm — low fan speed warning active.
+          </p>
         </div>
       </div>
     </section>

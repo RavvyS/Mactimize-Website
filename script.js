@@ -864,6 +864,52 @@
     }
   });
 
+  // --- Interactive Spinning Fan Rotor Simulator ---
+  const fanSlider = document.getElementById('fanSlider');
+  const fanRotor = document.getElementById('fanRotor');
+  const simRpmVal = document.getElementById('simRpmVal');
+  const simTempVal = document.getElementById('simTempVal');
+  const simModeBadge = document.getElementById('simModeBadge');
+  const simWarning = document.getElementById('simWarning');
+  const presetBtns = document.querySelectorAll('.preset-pills [data-rpm]');
+
+  function updateFanSim(rpm, isAuto, activeKey) {
+    const clamped = Math.max(2317, Math.min(6800, Number(rpm)));
+    if (fanSlider) fanSlider.value = String(clamped);
+    if (simRpmVal) simRpmVal.textContent = clamped.toLocaleString();
+
+    const ratio = (clamped - 2317) / (6800 - 2317);
+    const spinSec = (2.4 - ratio * 2.15).toFixed(2);
+    if (fanRotor) fanRotor.style.setProperty('--fan-speed', `${spinSec}s`);
+
+    const temp = Math.round(82 - ratio * 34);
+    if (simTempVal) {
+      simTempVal.textContent = `${temp}°C`;
+      simTempVal.style.color = temp >= 78 ? 'var(--red)' : temp >= 60 ? 'var(--orange)' : 'var(--green)';
+    }
+
+    if (simModeBadge) {
+      simModeBadge.textContent = isAuto ? 'Auto' : 'Manual';
+      simModeBadge.className = isAuto ? 'tag safe' : 'tag review';
+    }
+
+    if (simWarning) simWarning.hidden = !(temp >= 78 && !isAuto);
+
+    presetBtns.forEach((b) => {
+      b.classList.toggle('active', Boolean(activeKey && b.dataset.rpm === activeKey));
+    });
+  }
+
+  fanSlider?.addEventListener('input', (e) => updateFanSim(e.target.value, false, null));
+  presetBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const val = btn.dataset.rpm;
+      if (val === 'auto') updateFanSim(3600, true, 'auto');
+      else updateFanSim(Number(val), false, val);
+    });
+  });
+  updateFanSim(3600, true, 'auto');
+
   // Initial Render
   render();
 })();
