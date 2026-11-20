@@ -114,19 +114,30 @@ code {
 .orb-1 { width: 620px; height: 620px; background: #0071e3; top: -260px; left: -100px; }
 .orb-2 { width: 520px; height: 520px; background: #06b6d4; top: -140px; right: -100px; }
 
-/* Floating Glass Pill Nav */
+/* Floating Apple Liquid Glass Pill Nav */
 .glass-nav-wrap {
-  position: sticky; top: 12px; z-index: 80;
+  position: sticky; top: 14px; z-index: 80;
   display: flex; justify-content: center; padding: 0 16px;
 }
 .glass-nav {
-  width: min(920px, 100%);
+  width: min(940px, 100%);
   display: flex; align-items: center; justify-content: space-between; gap: 14px;
-  padding: 7px 10px 7px 14px; border-radius: 999px;
-  background: var(--glass-bg-strong);
-  backdrop-filter: blur(26px) saturate(180%); -webkit-backdrop-filter: blur(26px) saturate(180%);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-specular), var(--shadow-md);
+  padding: 8px 10px 8px 16px; border-radius: 999px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(34px) saturate(200%);
+  -webkit-backdrop-filter: blur(34px) saturate(200%);
+  border: 1px solid var(--glass-border-hover);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.12),
+    0 12px 34px rgba(15, 23, 42, 0.08);
+}
+[data-theme="dark"] .glass-nav,
+[data-theme="dark"] .footer-row {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 16px 40px rgba(0, 0, 0, 0.45);
 }
 .brand { display: inline-flex; align-items: center; gap: 8px; color: var(--text); text-decoration: none; font-weight: 700; font-size: 14.5px; }
 .brand-logo { display: block; }
@@ -700,10 +711,36 @@ code {
 .price-note { font-size: 12.5px; color: var(--text-2); margin: 10px 0 20px; }
 .pricing-cta { width: 100%; justify-content: center; }
 
-.footer { padding: 28px 0 42px; border-top: 1px solid var(--glass-border); color: var(--text-2); font-size: 13px; }
-.footer-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+/* Floating Apple Liquid Glass Footer */
+.footer {
+  padding: 16px 0 40px;
+  color: var(--text-2);
+  font-size: 13px;
+}
+.footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px 24px;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(34px) saturate(200%);
+  -webkit-backdrop-filter: blur(34px) saturate(200%);
+  border: 1px solid var(--glass-border-hover);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.12),
+    0 12px 34px rgba(15, 23, 42, 0.07);
+}
 .footer-nav { display: flex; gap: 18px; }
-.footer-nav a { color: var(--text-2); text-decoration: none; }
+.footer-nav a {
+  color: var(--text-2);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.14s ease;
+}
 .footer-nav a:hover { color: var(--text); }
 
 /* Dialog */
@@ -793,7 +830,7 @@ code {
   .fan-svg { width: 76px; height: 76px; }
   .fan-big-rpm { font-size: 26px; }
   .price-amount { font-size: 42px; }
-  .footer-row { flex-direction: column; align-items: flex-start; }
+  .footer-row { flex-direction: column; align-items: flex-start; border-radius: 20px; padding: 16px 18px; }
 }
 
 @media (max-width: 400px) {
