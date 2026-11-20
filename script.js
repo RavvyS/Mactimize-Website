@@ -910,6 +910,15 @@
   });
   updateFanSim(3600, true, 'auto');
 
+  // --- Interactive Pointer-Tracking Liquid Glass Specular Sheen ---
+  document.querySelectorAll('.glass-nav, .footer-row, .cooling-shell, .tier-card, .pricing-card').forEach((elNode) => {
+    elNode.addEventListener('pointermove', (e) => {
+      const rect = elNode.getBoundingClientRect();
+      elNode.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+      elNode.style.setProperty('--my', `${e.clientY - rect.top}px`);
+    });
+  });
+
   // Initial Render
   render();
 })();

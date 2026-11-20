@@ -5,11 +5,16 @@
   --text: #1d1d1f;
   --text-2: #515154;
   --text-3: #86868b;
-  --glass-bg: rgba(255, 255, 255, 0.80);
-  --glass-bg-strong: rgba(255, 255, 255, 0.92);
-  --glass-border: rgba(15, 23, 42, 0.08);
-  --glass-border-hover: rgba(15, 23, 42, 0.16);
-  --glass-specular: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  --glass-bg: rgba(255, 255, 255, 0.44);
+  --glass-bg-strong: rgba(255, 255, 255, 0.64);
+  --glass-border: rgba(255, 255, 255, 0.65);
+  --glass-border-hover: rgba(255, 255, 255, 0.90);
+  --glass-outer-ring: rgba(15, 23, 42, 0.08);
+  --glass-specular:
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(0, 113, 227, 0.14),
+    inset 1px 0 0 rgba(255, 255, 255, 0.55);
+  --glass-sheen: linear-gradient(150deg, rgba(255, 255, 255, 0.58) 0%, rgba(255, 255, 255, 0.10) 42%, rgba(255, 255, 255, 0.02) 100%);
   --surface-subtle: rgba(15, 23, 42, 0.045);
   --blue: #0071e3;
   --blue-hover: #0077ed;
@@ -20,9 +25,9 @@
   --green: #16a34a;
   --orange: #d97706;
   --red: #dc2626;
-  --shadow-lg: 0 28px 70px rgba(15, 23, 42, 0.12);
-  --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.06);
-  --orb-opacity: 0.14;
+  --shadow-lg: 0 28px 70px rgba(15, 23, 42, 0.11);
+  --shadow-md: 0 12px 34px rgba(15, 23, 42, 0.07);
+  --orb-opacity: 0.24;
 
   /* Native macOS Light Window Palette */
   --win-bg: #ffffff;
@@ -43,11 +48,16 @@
   --text: #f5f5f7;
   --text-2: #a1a1aa;
   --text-3: #71717a;
-  --glass-bg: rgba(24, 27, 36, 0.68);
-  --glass-bg-strong: rgba(26, 29, 40, 0.88);
-  --glass-border: rgba(255, 255, 255, 0.11);
-  --glass-border-hover: rgba(255, 255, 255, 0.22);
-  --glass-specular: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  --glass-bg: rgba(24, 28, 40, 0.38);
+  --glass-bg-strong: rgba(26, 30, 44, 0.58);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --glass-border-hover: rgba(255, 255, 255, 0.30);
+  --glass-outer-ring: rgba(0, 0, 0, 0.45);
+  --glass-specular:
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(50, 215, 255, 0.18),
+    inset 1px 0 0 rgba(255, 255, 255, 0.12);
+  --glass-sheen: linear-gradient(150deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.03) 45%, rgba(255, 255, 255, 0.0) 100%);
   --surface-subtle: rgba(255, 255, 255, 0.06);
   --blue: #0a84ff;
   --blue-hover: #2c96ff;
@@ -58,9 +68,9 @@
   --green: #30d158;
   --orange: #ff9f0a;
   --red: #ff453a;
-  --shadow-lg: 0 32px 80px rgba(0, 0, 0, 0.62);
-  --shadow-md: 0 14px 36px rgba(0, 0, 0, 0.36);
-  --orb-opacity: 0.25;
+  --shadow-lg: 0 32px 80px rgba(0, 0, 0, 0.65);
+  --shadow-md: 0 16px 40px rgba(0, 0, 0, 0.42);
+  --orb-opacity: 0.36;
 
   /* Native macOS Dark Window Palette */
   --win-bg: #161822;
@@ -108,11 +118,15 @@ code {
 
 .container { width: min(1180px, calc(100% - 32px)); margin-inline: auto; }
 
-/* Subtle Ambient Orbs */
+/* Living Ambient Orbs for Liquid Glass Refraction */
 .ambient-bg { position: fixed; inset: 0; pointer-events: none; z-index: -1; overflow: hidden; }
-.orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: var(--orb-opacity); }
-.orb-1 { width: 620px; height: 620px; background: #0071e3; top: -260px; left: -100px; }
-.orb-2 { width: 520px; height: 520px; background: #06b6d4; top: -140px; right: -100px; }
+.orb { position: absolute; border-radius: 50%; filter: blur(105px); opacity: var(--orb-opacity); animation: floatOrb 18s ease-in-out infinite alternate; }
+.orb-1 { width: 680px; height: 680px; background: #0071e3; top: -220px; left: -120px; }
+.orb-2 { width: 580px; height: 580px; background: #06b6d4; top: 80px; right: -120px; animation-delay: -6s; }
+@keyframes floatOrb {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(35px, 28px) scale(1.08); }
+}
 
 /* Floating Apple Liquid Glass Pill Nav */
 .glass-nav-wrap {
@@ -120,24 +134,57 @@ code {
   display: flex; justify-content: center; padding: 0 16px;
 }
 .glass-nav {
+  position: relative; overflow: hidden;
   width: min(940px, 100%);
   display: flex; align-items: center; justify-content: space-between; gap: 14px;
   padding: 8px 10px 8px 16px; border-radius: 999px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(34px) saturate(200%);
-  -webkit-backdrop-filter: blur(34px) saturate(200%);
-  border: 1px solid var(--glass-border-hover);
+  background: var(--glass-sheen), var(--glass-bg);
+  backdrop-filter: blur(42px) saturate(230%) brightness(1.04);
+  -webkit-backdrop-filter: blur(42px) saturate(230%) brightness(1.04);
+  border: 1px solid var(--glass-border);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.75),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.12),
-    0 12px 34px rgba(15, 23, 42, 0.08);
+    var(--glass-specular),
+    0 0 0 0.5px var(--glass-outer-ring),
+    0 14px 38px rgba(15, 23, 42, 0.10);
 }
 [data-theme="dark"] .glass-nav,
 [data-theme="dark"] .footer-row {
+  backdrop-filter: blur(42px) saturate(220%) brightness(1.08);
+  -webkit-backdrop-filter: blur(42px) saturate(220%) brightness(1.08);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.22),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
-    0 16px 40px rgba(0, 0, 0, 0.45);
+    var(--glass-specular),
+    0 0 0 0.5px var(--glass-outer-ring),
+    0 18px 46px rgba(0, 0, 0, 0.52);
+}
+
+/* Liquid Glass Interactive Specular Sheen on Glass Surfaces */
+.glass-nav::after,
+.footer-row::after,
+.cooling-shell::after,
+.tier-card::after,
+.pricing-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.42), transparent 62%);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+[data-theme="dark"] .glass-nav::after,
+[data-theme="dark"] .footer-row::after,
+[data-theme="dark"] .cooling-shell::after,
+[data-theme="dark"] .tier-card::after,
+[data-theme="dark"] .pricing-card::after {
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 0%), rgba(120, 210, 255, 0.16), transparent 62%);
+}
+.glass-nav:hover::after,
+.footer-row:hover::after,
+.cooling-shell:hover::after,
+.tier-card:hover::after,
+.pricing-card:hover::after {
+  opacity: 1;
 }
 .brand { display: inline-flex; align-items: center; gap: 8px; color: var(--text); text-decoration: none; font-weight: 700; font-size: 14.5px; }
 .brand-logo { display: block; }
@@ -622,10 +669,14 @@ code {
 
 /* Interactive Spinning Fan Rotor Section */
 .cooling-shell {
+  position: relative; overflow: hidden;
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: center;
   padding: 36px; border-radius: 26px;
-  background: var(--glass-bg); backdrop-filter: blur(26px);
-  border: 1px solid var(--glass-border); box-shadow: var(--glass-specular), var(--shadow-lg);
+  background: var(--glass-sheen), var(--glass-bg);
+  backdrop-filter: blur(40px) saturate(220%) brightness(1.03);
+  -webkit-backdrop-filter: blur(40px) saturate(220%) brightness(1.03);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-specular), 0 0 0 0.5px var(--glass-outer-ring), var(--shadow-lg);
 }
 .cooling-copy p { font-size: 15px; color: var(--text-2); margin: 12px 0 0; max-width: 44ch; }
 .cooling-interactive {
@@ -662,24 +713,33 @@ code {
 
 .safety-trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .tier-card {
-  padding: 24px; border-radius: 20px; background: var(--glass-bg);
-  border: 1px solid var(--glass-border); box-shadow: var(--glass-specular), var(--shadow-md);
+  position: relative; overflow: hidden;
+  padding: 24px; border-radius: 22px;
+  background: var(--glass-sheen), var(--glass-bg);
+  backdrop-filter: blur(38px) saturate(210%) brightness(1.03);
+  -webkit-backdrop-filter: blur(38px) saturate(210%) brightness(1.03);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-specular), 0 0 0 0.5px var(--glass-outer-ring), var(--shadow-md);
+  transition: transform 0.18s ease, border-color 0.18s ease;
 }
+.tier-card:hover { transform: translateY(-2px); border-color: var(--glass-border-hover); }
 .tier-card h3 { margin: 12px 0 6px; font-size: 18px; }
 .tier-card p { margin: 0; font-size: 14px; color: var(--text-2); }
 
 /* Minimalist $20 Lifetime Access Pricing Card */
 .pricing-card {
+  position: relative; overflow: hidden;
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
   gap: 32px;
   align-items: center;
   padding: 40px;
-  border-radius: 26px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(26px);
-  border: 1px solid var(--glass-border-hover);
-  box-shadow: var(--glass-specular), var(--shadow-lg);
+  border-radius: 28px;
+  background: var(--glass-sheen), var(--glass-bg);
+  backdrop-filter: blur(40px) saturate(220%) brightness(1.03);
+  -webkit-backdrop-filter: blur(40px) saturate(220%) brightness(1.03);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-specular), 0 0 0 0.5px var(--glass-outer-ring), var(--shadow-lg);
 }
 .pricing-sub { color: var(--text-2); font-size: 15px; margin: 10px 0 20px; }
 .pricing-list {
@@ -718,6 +778,7 @@ code {
   font-size: 13px;
 }
 .footer-row {
+  position: relative; overflow: hidden;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -725,14 +786,14 @@ code {
   gap: 14px;
   padding: 16px 24px;
   border-radius: 999px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(34px) saturate(200%);
-  -webkit-backdrop-filter: blur(34px) saturate(200%);
-  border: 1px solid var(--glass-border-hover);
+  background: var(--glass-sheen), var(--glass-bg);
+  backdrop-filter: blur(42px) saturate(230%) brightness(1.04);
+  -webkit-backdrop-filter: blur(42px) saturate(230%) brightness(1.04);
+  border: 1px solid var(--glass-border);
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.75),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.12),
-    0 12px 34px rgba(15, 23, 42, 0.07);
+    var(--glass-specular),
+    0 0 0 0.5px var(--glass-outer-ring),
+    0 14px 38px rgba(15, 23, 42, 0.08);
 }
 .footer-nav { display: flex; gap: 18px; }
 .footer-nav a {
