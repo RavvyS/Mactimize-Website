@@ -329,7 +329,7 @@ code {
 .dot-green { background: #28c840; }
 .mz-win-title { font-size: 11.5px; font-weight: 600; color: var(--win-muted); }
 
-.mz-brand { display: flex; align-items: center; gap: 9px; padding: 6px 14px 10px; }
+.mz-brand { display: flex; align-items: center; gap: 9px; padding: 14px 14px 10px; }
 .mz-brand strong { display: block; font-size: 13.5px; line-height: 1.15; }
 .mz-brand small { font-size: 10px; color: var(--win-muted); }
 
