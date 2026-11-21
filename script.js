@@ -919,6 +919,20 @@
     });
   });
 
+  // --- Wire Dodo Payments Checkout URL from config.js ---
+  const cfg = window.MACTIMIZE_CONFIG;
+  if (cfg) {
+    const isLiveDodo = cfg.checkoutUrl && !cfg.checkoutUrl.includes('YOUR_DODO_PRODUCT_ID');
+    const targetUrl = isLiveDodo ? cfg.checkoutUrl : cfg.fallbackDmgUrl;
+    document.querySelectorAll('.dodo-checkout-link').forEach((a) => {
+      a.setAttribute('href', targetUrl);
+      if (isLiveDodo) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  }
+
   // Initial Render
   render();
 })();
